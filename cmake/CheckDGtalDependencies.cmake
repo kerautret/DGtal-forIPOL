@@ -11,7 +11,7 @@ set(Boost_USE_STATIC_RUNTIME OFF)
 set(Boost_FOUND TRUE)
 message(STATUS "Boost and boost_program_options found.")
 
-SET(Boost_INCLUDE_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/boost-1.48)
+SET(Boost_INCLUDE_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/src/boost-1.48)
 include_directories( ${Boost_INCLUDE_DIRS} )
 SET(DGtalLibInc ${Boost_INCLUDE_DIRS})
 
