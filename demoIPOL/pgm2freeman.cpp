@@ -13,9 +13,14 @@
 #include <vector>
 #include <string>
 
+ #include "ImaGene/Arguments.h"
+
+
 using namespace DGtal;
 
 
+
+static ImaGene::Arguments args;
 
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -55,8 +60,9 @@ void saveSelContoursAsFC(std::vector< std::vector< Z2i::Point >  >  vectContours
 
 int main( int argc, char** argv )
 {
+  args.addOption("-import", "-import <fichier.dat> epsilon isClosed:1:0 ", "0", "O.0001", "0");
 
-  trace.info()<<"pgm2freeman"<< endl;
+
   
 
 
