@@ -33,7 +33,7 @@
 #include "DGtal/kernel/SpaceND.h"
 #include "DGtal/kernel/domains/HyperRectDomain.h"
 #include "DGtal/io/boards/Board2D.h"
-
+#include "ImaGene/Arguments.h"
 ///////////////////////////////////////////////////////////////////////////////
 
 using namespace std;

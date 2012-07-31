@@ -11,21 +11,27 @@ include(DGtal/base/ModuleSRC.txt)
 include(DGtal/io/ModuleSRC.txt)
 include(DGtal/math/ModuleSRC.txt)
 
+
 ## Board dependency
 include(Board/ModuleSRC.txt)
 
 
+## ImaGeneArgs dependency
+
+include(ImaGene/ModuleSRC.txt)
 
 # Create a library called "DGtal".
 # The extension is already found. Any number of sources could be listed here.
 
+
 IF (BUILD_SHARED_LIBS)
-  add_library (DGtal SHARED ${DGTAL_SRC} ${BOARD_SRC})
+  add_library (DGtal SHARED ${DGTAL_SRC} ${BOARD_SRC} ${ImaGeneArgs_SRC})
   target_link_libraries( DGtal ${DGtalLibDependencies} )
 ELSE(BUILD_SHARED_LIBS)
   add_library (DGtal STATIC ${DGTAL_SRC} ${BOARD_SRC})
   target_link_libraries(DGtal ${DGtalLibDependencies} )
 ENDIF(BUILD_SHARED_LIBS)
+
 
 install(TARGETS DGtal
   # IMPORTANT: Add the DGtal library to the "export-set"
