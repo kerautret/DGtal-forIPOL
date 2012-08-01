@@ -37,7 +37,7 @@ SET(DEMO_IPOL_SRC
 
 FOREACH(FILE ${DEMO_IPOL_SRC})
   add_executable(${FILE} ${FILE})
-  target_link_libraries (${FILE} DGtal)
+  target_link_libraries (${FILE} DGtal DGtalIO)
 ENDFOREACH(FILE)
 
 
