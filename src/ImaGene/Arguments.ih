@@ -38,11 +38,10 @@
 #endif // else defined(NO_DEBUG)
 
 
-
 ///////////////////////////////////////////////////////////////////////////////
 // Implementation of inline methods                                          //
 
-ImaGene::Arguments::Option::Option
+inline ImaGene::Arguments::Option::Option
 ( std::string na, unsigned int nb, std::string descr )
   : name( na ), nbparams( nb ), description( descr ), present( false ),
     values( nb )
@@ -51,7 +50,7 @@ ImaGene::Arguments::Option::Option
     values[ i ] = "";
 }
 
-ImaGene::Arguments::Option::Option
+inline ImaGene::Arguments::Option::Option
 ( std::string na, unsigned int nb, std::string descr, 
   std::vector<std::string> defaultvals )
   : name( na ), nbparams( nb ), description( descr ), present( false ),

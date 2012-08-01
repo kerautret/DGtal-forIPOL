@@ -13,7 +13,8 @@
 #include <vector>
 #include <string>
 
- #include "ImaGene/Arguments.h"
+#include "ImaGene/Arguments.h"
+
 
 
 using namespace DGtal;
@@ -60,11 +61,28 @@ void saveSelContoursAsFC(std::vector< std::vector< Z2i::Point >  >  vectContours
 
 int main( int argc, char** argv )
 {
-  args.addOption("-import", "-import <fichier.dat> epsilon isClosed:1:0 ", "0", "O.0001", "0");
 
+  args.addIOArgs(  false, false );  
 
+  args.addOption( "-threshold", "-threshold <val>: threshold value for binarizing PGM gray values (def. is 128).", "128" );
+  args.addOption( "-min_size", "-min_size <m>: minimum digital length of contours for output (def. is 4).", "4" );
+  args.addOption( "-badj", "-badj <0/1>: 0 is interior bel adjacency, 1 is exterior (def. is 0).", "0" );
+  args.addOption("-selectContour", "-selectContour <x0> <y0> <distanceMax>: select the contours for which the first point is near (x0, y0) with a distance less than <distanceMax>","0", "0", "0" );
+  args.addBooleanOption("-invertVerticalAxis", "-invertVerticalAxis used to transform the contour representation (need for DGtal), used o nly for the contour displayed, not for the contour selection (-selectContour). ");
   
 
+ if ( ( argc <= 1 ) ||  ! args.readArguments( argc, argv ) ) 
+   {
+     cerr <<"args...."<< endl;
+     cerr << args.usage( "pgm2freeman", 
+			 "Extracts all 2D contours from a PGM image given on the standard input and writes them on the standard output as FreemanChain's.",
+			 "" )
+	  << endl;
+     return 1;
+   }  
+
+
+cerr <<"end...."<< endl; 
 
   // // parse command line ----------------------------------------------
   // po::options_description general_opt("Allowed options are: ");

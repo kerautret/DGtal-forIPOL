@@ -28,9 +28,11 @@
 
 //////////////////////////////////////////////////////////////////////////////
 #include <iostream>
+#include <fstream>
+
 #include <string>
 #include <vector>
-
+#include "ImaGene/base/BasicTypes.h"
 //////////////////////////////////////////////////////////////////////////////
 
 //////////////////////////////////////////////////////////////////////////////
@@ -80,7 +82,9 @@ public:
     bool operator<( const std::string & s ) const;
     std::string getValue( unsigned int i ) const;
     int getIntValue( unsigned int i ) const;
+    long long getLongLongValue( unsigned int i ) const;
     float getFloatValue( unsigned int i ) const;
+    double getDoubleValue( unsigned int i ) const;
     void setValue( unsigned int i, const std::string & s );
     
   };
@@ -216,6 +220,39 @@ public:
    * @return the possible options (const reference version).
    */
   const Options & getOptions() const;
+  /**
+     * Add the standard arguments for I/O and trace to argument
+     * object [args].
+     * -input <file_in>: name of input file.
+     * -output <file_out>: name of output file.
+     *
+     * @param args (updated) the argument object to enrich.
+     * @param in if 'true' add "-input"
+     * @param out if 'true' add "-output"
+     */
+  void addIOArgs(  bool in = true, bool out = true );
+
+
+/**
+     * Open input file or standard input depending on arguments. This
+     * method is not reentrant.
+     *
+     * @param args the argument object.
+     * @return an input stream (cin or file)
+     * @see addIOArgs
+     */
+  std::istream & openInput(  );
+
+    /**
+     * Open output file or standard output depending on
+     * arguments. This method is not reentrant.
+     *
+     * @param args the argument object.
+     * @return an output stream (cout or file)
+     * @see addIOArgs
+     */
+   std::ostream & openOutput(  );
+
 
   /**
    * Builds an usage from the command name and a list of options
@@ -245,15 +282,15 @@ public:
   // ------------------------- public Datas -----------------------------------
 public:
 
-  unsigned int dim;
-  unsigned int sizes[ 100 ];
-  float radius;
-  float radius_first;
-  float radius_last;
-  float radius_incr;
-  bool digital;
-  Shape shape;
-  CurvatureEstimator curv_estimator;
+  /* unsigned int dim; */
+  /* unsigned int sizes[ 100 ]; */
+  /* float radius; */
+  /* float radius_first; */
+  /* float radius_last; */
+  /* float radius_incr; */
+  /* bool digital; */
+  /* Shape shape; */
+  /* CurvatureEstimator curv_estimator; */
 
   // ------------------------- Datas ------------------------------------------
 private:
@@ -261,7 +298,15 @@ private:
    * List of standard possible options for the arguments.
    */
   Options m_opts;
+     /**
+     * The default input stream.
+     */
+    static std::ifstream m_input_stream;
 
+    /**
+     * The default output stream.
+     */
+    static std::ofstream m_output_stream;
   // ------------------------- Hidden services --------------------------------
 protected:
 private:
