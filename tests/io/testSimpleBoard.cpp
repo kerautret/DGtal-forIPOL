@@ -33,7 +33,6 @@
 #include "DGtal/kernel/SpaceND.h"
 #include "DGtal/kernel/domains/HyperRectDomain.h"
 #include "DGtal/io/boards/Board2D.h"
-
 ///////////////////////////////////////////////////////////////////////////////
 
 using namespace std;
@@ -47,6 +46,8 @@ using namespace LibBoard;
  * Example of a test. To be completed.
  *
  */
+
+
 bool testSimpleBoard()
 {
   unsigned int nbok = 0;
@@ -133,6 +134,7 @@ int main( int argc, char** argv )
 {
   trace.beginBlock ( "Testing class SimpleBoard" );
   trace.info() << "Args:";
+  
   for ( int i = 0; i < argc; ++i )
     trace.info() << " " << argv[ i ];
   trace.info() << endl;
