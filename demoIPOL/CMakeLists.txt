@@ -32,6 +32,7 @@ configure_file(${PROJECT_SOURCE_DIR}/demoIPOL/ConfigDemoIPOL.h.in
 
 SET(DEMO_IPOL_SRC
   pgm2freeman
+  displayContours
  )
 
 FOREACH(FILE ${DEMO_IPOL_SRC})
