@@ -50,15 +50,8 @@
 #include "DGtal/io/readers/MagickReader.h"
 #endif
 
-
 //contour
 #include "DGtal/geometry/curves/representation/FreemanChain.h"
-
-//processing
-#include "DGtal/geometry/curves/ArithmeticalDSS.h"
-#include "DGtal/geometry/curves/GreedyDecomposition.h"
-#include "DGtal/geometry/curves/MaximalSegments.h"
-#include "DGtal/geometry/curves/FP.h"
 
 
 //STL
