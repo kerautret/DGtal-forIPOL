@@ -52,7 +52,7 @@
 
 
 //contour
-#include "DGtal/geometry/curves/FreemanChain.h"
+#include "DGtal/geometry/curves/representation/FreemanChain.h"
 
 //processing
 #include "DGtal/geometry/curves/ArithmeticalDSS.h"
