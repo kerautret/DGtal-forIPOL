@@ -67,7 +67,7 @@ int main( int argc, char** argv )
   if ( ( argc <= 1 ) ||  ! args.readArguments( argc, argv ) ) 
     {
       cerr << args.usage( "pgm2freeman: ", 
-			  "Extracts all 2D contours from a PGM image given on the standard input and writes them on the standard output as FreemanChain's. \nTypical use: \n pgm2freeman -threshold 200 < image.pgm > imageContour.fc ",
+			  "Extracts all 2D contours from a PGM image given on the standard input and writes them on the standard output as FreemanChain's. \nTypical use: \n pgm2freeman -threshold 200 -image image.pgm > imageContour.fc ",
 			  "" )
 	   << endl;
       return 1;
@@ -86,9 +86,9 @@ int main( int argc, char** argv )
  
   int min, max, increment;
   if(thresholdRange){
-    min = args.getOption("-thresholdRange")->getIntValue(0);
+    minThreshold = args.getOption("-thresholdRange")->getIntValue(0);
     increment = args.getOption("-thresholdRange")->getIntValue(1);
-    max = args.getOption("-thresholdRange")->getIntValue(2);
+    maxThreshold = args.getOption("-thresholdRange")->getIntValue(2);
   }
  
   Z2i::Point selectCenter;
@@ -129,9 +129,9 @@ int main( int argc, char** argv )
     }
     trace.info()<< " [done] " << endl;
   }else{
-    for(int i=0; minThreshold+i*increment< maxThreshold; i++){
-      min = minThreshold+(i)*increment;
-      max = maxThreshold-(i)*increment;
+    for(int i=0; minThreshold+(i+1)*increment< maxThreshold; i++){
+      min = minThreshold;
+      max = minThreshold+(i+1)*increment;
       
       Binarizer b(min, max); 
       PointFunctorPredicate<Image,Binarizer> predicate(image, b); 
