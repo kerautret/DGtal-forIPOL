@@ -113,12 +113,15 @@ int main( int argc, char** argv )
     trace.error() << "Problem in KSpace initialisation"<< endl;
   }
   
- 
+  bool badj = (args.getOption("-badj")->getIntValue(0))!=1;
+  
+  
   if (!thresholdRange){
     Binarizer b(minThreshold, maxThreshold); 
     PointFunctorPredicate<Image,Binarizer> predicate(image, b); 
     trace.info() << "DGtal contour extraction from thresholds ["<<  minThreshold << "," << maxThreshold << "]" ;
-    SurfelAdjacency<2> sAdj( true );
+    
+    SurfelAdjacency<2> sAdj( badj );
     std::vector< std::vector< Z2i::Point >  >  vectContoursBdryPointels;
     Surfaces<Z2i::KSpace>::extractAllPointContours4C( vectContoursBdryPointels,
   						      ks, predicate, sAdj );  
@@ -137,7 +140,7 @@ int main( int argc, char** argv )
       PointFunctorPredicate<Image,Binarizer> predicate(image, b); 
       
       trace.info() << "DGtal contour extraction from thresholds ["<<  min << "," << max << "]" ;
-      SurfelAdjacency<2> sAdj( true );
+      SurfelAdjacency<2> sAdj( badj );
       std::vector< std::vector< Z2i::Point >  >  vectContoursBdryPointels;
       Surfaces<Z2i::KSpace>::extractAllPointContours4C( vectContoursBdryPointels,
   							ks, predicate, sAdj );  
