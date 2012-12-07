@@ -53,6 +53,7 @@
 #include "DGtal/topology/KhalimskySpaceND.h"
 #include "DGtal/topology/Object.h"
 #include "DGtal/kernel/PointVector.h"
+#include "DGtal/shapes/fromPoints/MeshFromPoints.h"
 
 
 //////////////////////////////////////////////////////////////////////////////
@@ -233,6 +234,14 @@ namespace DGtal
     static void draw( Display3D & display, const DGtal::CameraUpVector & );
     static void draw( Display3D & display, const DGtal::CameraZNearFar & );
 
+    static void draw( Display3D & display, const DGtal::TransformedKSSurfel & aTransformedKSSurfel);
+
+    template <typename TPoint>
+    static void drawAsFaces( Display3D & display,  const DGtal::MeshFromPoints<TPoint> & );
+
+    template <typename TPoint>
+    static void draw( Display3D & display, const  DGtal::MeshFromPoints<TPoint> &  );
+    // MeshFromPoints
   }; // end of struct Display3DFactory
 
 } // namespace DGtal
