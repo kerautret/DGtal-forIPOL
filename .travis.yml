@@ -5,24 +5,10 @@ compiler:
   - clang
 
 env:
-  - BTYPE="-DCMAKE_BUILD_TYPE=Debug -DWITH_QGLVIEWER=false  -DWITH_CAIRO=false -DWITH_MAGICK=false -DWITH_GMP=false" 
-  - BTYPE="-DCMAKE_BUILD_TYPE=Release" 
-  - BTYPE="-DCMAKE_BUILD_TYPE=Debug" 
+  - BTYPE="-DCMAKE_BUILD_TYPE=Debug -DWITH_QGLVIEWER=false  -DWITH_CAIRO=false -DWITH_MAGICK=false -DWITH_GMP=false  -DDGTAL_BUILD_TESTING=OFF" 
 
-before_script:
-
-
-
-matrix:
-  exclude:
-    - compiler: gcc
-      env: BTYPE="-DCMAKE_BUILD_TYPE=Debug -DWITH_QGLVIEWER=false  -DWITH_CAIRO=false -DWITH_MAGICK=false -DWITH_GMP=false" 
- 
 
 script: 
   - cmake . $BTYPE
   - make
 
-
-after_script: 
-  - "make test"
