@@ -23,5 +23,6 @@ script:
   - cmake . $BTYPE
   - make
 
+
 after_script: 
   - "make test"
