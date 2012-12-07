@@ -94,8 +94,8 @@ int main( int argc, char** argv )
 #ifdef WITH_MAGICK
   args.addOption("-backgroundImage", "-backgroundImage <filename> <alpha> : display image as background with transparency alpha (defaut 1) (transparency works only if cairo is available)", "imageBG.png", "1.0"  );
 #endif
-  
 
+  args.addOption("-backgroundImageXFIG", "-backgroundImageXFIG <filename> <width> <height> : display image as background in XFIG format", "imageBG.png", "256","256"  );
   args.addOption("-scale", "-scale <value> 1: normal; >1 : larger ; <1 lower resolutions  ) (default 1.0) ", "1.0");
   
   bool parseOK=  args.readArguments( argc, argv );
@@ -132,7 +132,12 @@ int main( int argc, char** argv )
   }
 #endif
  
-
+  if(args.check("-backgroundImageXFIG")){
+    string imageName = args.getOption("-backgroundImageXFIG")->getValue(0);
+    unsigned int width = args.getOption("-backgroundImageXFIG")->getIntValue(1);
+    unsigned int height = args.getOption("-backgroundImageXFIG")->getIntValue(2);
+    aBoard.drawImage(imageName, 0,height-1, width, height, -1, 1.0 );
+    }
  
   if(args.check("-fc")){
     string fileName = args.getOption("-fc")->getValue(0);
