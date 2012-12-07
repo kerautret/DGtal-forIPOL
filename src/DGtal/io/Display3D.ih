@@ -923,7 +923,9 @@ inline
 void
 DGtal::operator>> ( const Display3D &aDisplay3D, DGtal::MeshFromPoints<Display3D::pointD3D> &aMesh)
 {
-   trace.info() << "generating faces done." << endl;
+  DGtal::MeshFromPoints<Display3D::pointD3D> mesh(true);
+  aDisplay3D >> mesh;
+  trace.info() << "generating faces done." << endl;
   mesh >> aFilename;
   trace.info() << "file exported in file: " << aFilename << endl;
 }
