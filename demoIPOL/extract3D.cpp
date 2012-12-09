@@ -16,12 +16,9 @@
 #include "ImaGene/Arguments.h"
 
 
-
-
 using namespace std;
 using namespace DGtal;
 using namespace Z3i;
-
 
 
 static ImaGene::Arguments args;
@@ -29,8 +26,6 @@ static ImaGene::Arguments args;
 
 int main( int argc, char** argv )
 {
-
-
   args.addOption("-image", "-image <filename>  ", "aFile.vol ");
   args.addOption("-output", "-output <filename> the output filename with .off extension", "output.off"); 
   args.addOption("-exportSRC", "-exportSRC <filename> export the source set of voxels", "src.off"); 
@@ -55,16 +50,16 @@ int main( int argc, char** argv )
   bool badj = (args.getOption("-badj")->getIntValue(0))!=1;
   
   
-  
-  
   typedef ImageSelector < Domain, int>::Type Image;
   Image image =   VolReader<Image>::importVol(imageFileName);
   Z3i::DigitalSet diamond_set(image.domain());
   SetFromImage<Z3i::DigitalSet>::append<Image>(diamond_set, image, valMin, valMax);
+
   //A KhalimskySpace is constructed from the domain boundary points.
   Point pUpper = image.domain().upperBound();
   Point pLower = image.domain().lowerBound();
-  cerr << "diamond size" << diamond_set.size(); 
+  
+  
   //Increase space to process also cell in the image border:
   pLower[0]-=1;pLower[1]-=1;pLower[2]-=1;
   pUpper[0]+=1;pUpper[1]+=1;pUpper[2]+=1;
@@ -73,9 +68,8 @@ int main( int argc, char** argv )
   K.init(pLower, pUpper, true);
   
   SurfelAdjacency<3> sAdj(  badj );
-
   vector<vector<SCell> > vectConnectedSCell;
-  
+ 
   
   //Here since the last argument is set to true, the resulting
   //SignedKhalimskySpaceND are signed in order to indicate the direction
@@ -85,13 +79,8 @@ int main( int argc, char** argv )
   SetPredicate<DigitalSet> shape_set_predicate( diamond_set );
   Surfaces<KSpace>::extractAllConnectedSCell(vectConnectedSCell,K, sAdj, shape_set_predicate, false);
 
-
-  
-  Display3D exportSRC;
   Display3D exportSurfel;
-
     
-
   // Each connected compoments are simply displayed with a specific color.
   GradientColorMap<long> gradient(0, (const long)vectConnectedSCell.size());
   gradient.addColor(Color::Red);
@@ -114,15 +103,13 @@ int main( int argc, char** argv )
   }
   
   exportSurfel << CustomColors3D(Color(250, 0,0),Color(250, 200,200, 200));
-  exportSurfel << diamond_set;
-
-  exportSRC << diamond_set;
-
-  
+  exportSurfel << diamond_set;  
   exportSurfel >> outputFileName;
-  exportSRC >> srcFileName;
-  
-  
-  
+
+  if(args.check("-exportSRC")){
+    Display3D exportSRC;
+    exportSRC << diamond_set;
+    exportSRC >> srcFileName;
+  }
+
 }
-//                                                                           //
