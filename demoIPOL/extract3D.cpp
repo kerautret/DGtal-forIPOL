@@ -54,31 +54,25 @@ int main( int argc, char** argv )
   typedef IntervalThresholder<Image::Value> Binarizer; 
   Image image =   VolReader<Image>::importVol(imageFileName);
 
- Binarizer b(minThreshold, maxThreshold); 
- PointFunctorPredicate<Image,Binarizer> predicate(image, b); 
+  Binarizer b(minThreshold, maxThreshold); 
+  PointFunctorPredicate<Image,Binarizer> predicate(image, b); 
  
  
-
   //A KhalimskySpace is constructed from the domain boundary points.
   Point pUpper = image.domain().upperBound();
   Point pLower = image.domain().lowerBound();
-  
-  
-  //Increase space to process also cell in the image border:
-  //  pLower[0]-=1;pLower[1]-=1;pLower[2]-=1;
-  // pUpper[0]+=1;pUpper[1]+=1;pUpper[2]+=1;
-
+ 
   KSpace K;
   K.init(pLower, pUpper, true);
-  
+ 
   SurfelAdjacency<3> sAdj(  badj );
   vector<vector<SCell> > vectConnectedSCell;
  
-
+ 
   Surfaces<KSpace>::extractAllConnectedSCell(vectConnectedSCell,K, sAdj, predicate, false);
 
   Display3D exportSurfel;
-    
+ 
   // Each connected compoments are simply displayed with a specific color.
   GradientColorMap<long> gradient(0, (const long)vectConnectedSCell.size());
   gradient.addColor(Color::Red);
@@ -93,8 +87,8 @@ int main( int argc, char** argv )
   for(int i=0; i< vectConnectedSCell.size();i++){
     DGtal::Color col= gradient(i);
     exportSurfel << CustomColors3D(Color(250, 0,0), Color(col.red(), 
-						       col.green(),
-						       col.blue()));
+							  col.green(),
+							  col.blue()));
     for(int j=0; j< vectConnectedSCell.at(i).size();j++){
       exportSurfel << vectConnectedSCell.at(i).at(j);
     }    
