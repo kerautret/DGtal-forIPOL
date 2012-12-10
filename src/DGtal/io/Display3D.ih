@@ -771,9 +771,8 @@ DGtal::Display3D::setScale(float sx, float sy, float sz){
 inline
 void 
 DGtal::Display3D::exportToMesh(DGtal::MeshFromPoints<pointD3D> &aMesh) const { 			       
-  cerr << "in export mesh"<< endl;
-  unsigned int vertexIndex=0;
   
+  unsigned int vertexIndex=0;  
   // Export of KSSurfel lists (generated from KhalimskyCell or SignedKhalimskyCell (through addKSSurfel))
   for (unsigned int i=0; i< myKSSurfelList.size(); i++){
     quadD3D quad = myKSSurfelList.at(i);
