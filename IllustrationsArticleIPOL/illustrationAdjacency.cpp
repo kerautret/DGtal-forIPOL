@@ -45,7 +45,7 @@ int main(int argc, char** argv)
   boardAdj << aSet;
   
   // Extracting the surface boundary of the shape
-  Surfaces<Z2i::KSpace>::sMakeBoundary( bdry, ks, set2dPredicate, ks.lowerBound(), ks.upperBound() );
+  Surfaces<Z2i::KSpace>::detectBoundarySurfels( bdry, ks, set2dPredicate, ks.lowerBound(), ks.upperBound() );
 
   SurfelAdjacency<Z2i::KSpace::dimension>  sAdjInt( true );
   SurfelAdjacency<Z2i::KSpace::dimension>  sAdjExt( false );
