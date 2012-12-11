@@ -94,7 +94,7 @@ int main( int argc, char** argv )
   typedef SetOfSurfels< KSpace, SurfelSet > MySetOfSurfels;
   typedef DigitalSurface< MySetOfSurfels > MyDigitalSurface;
   MySetOfSurfels theSetOfSurfels( ks, surfAdj );
-  Surfaces<KSpace>::sMakeBoundary( theSetOfSurfels.surfelSet(),
+  Surfaces<KSpace>::detectBoundarySurfels( theSetOfSurfels.surfelSet(),
                                    ks, set3dPredicate,
                                    image.domain().lowerBound(),
                                    image.domain().upperBound() );

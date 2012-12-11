@@ -523,7 +523,7 @@ extractAll2DSCellContours( std::vector< std::vector<SCell> > & aVectSCellContour
                            const PointPredicate & pp )
 {
   std::set<SCell> bdry;
-  sMakeBoundary( bdry, aKSpace, pp, 
+  detectBoundarySurfels( bdry, aKSpace, pp, 
                  aKSpace.lowerBound(), aKSpace.upperBound() );
   aVectSCellContour2D.clear();
   while( ! bdry.empty() )
@@ -577,7 +577,7 @@ extractAllConnectedSCell
 {
   set<SCell> bdry;
 
-  sMakeBoundary( bdry, aKSpace, pp,
+  detectBoundarySurfels( bdry, aKSpace, pp,
                  aKSpace.lowerBound(), aKSpace.upperBound() );
   aVectConnectedSCell.clear();
   while(!bdry.empty()){
@@ -727,7 +727,7 @@ template <typename TKSpace>
 template <typename SCellSet, typename PointPredicate >
 void 
 DGtal::Surfaces<TKSpace>::
-sMakeBoundary( SCellSet & aBoundary,
+detectBoundarySurfels( SCellSet & aBoundary,
                const KSpace & aKSpace,
                const PointPredicate & pp,
                const Point & aLowerBound, 
