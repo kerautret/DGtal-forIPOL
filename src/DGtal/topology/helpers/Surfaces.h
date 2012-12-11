@@ -577,7 +577,7 @@ namespace DGtal
     */
     template <typename SCellSet, typename PointPredicate >
     static 
-    void sMakeBoundary( SCellSet & aBoundary,
+    void detectBoundarySurfels( SCellSet & aBoundary,
                         const KSpace & aKSpace,
                         const PointPredicate & pp,
                         const Point & aLowerBound, 
