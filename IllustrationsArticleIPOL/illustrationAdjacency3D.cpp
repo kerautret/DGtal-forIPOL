@@ -79,7 +79,7 @@ int main(int argc, char** argv)
 
   
   // Extracting the surface boundary of the shape
-  Surfaces<Z3i::KSpace>::sMakeBoundary( bdry, ks, set3dPredicate, ks.lowerBound(), ks.upperBound() );
+  Surfaces<Z3i::KSpace>::detectBoundarySurfels( bdry, ks, set3dPredicate, ks.lowerBound(), ks.upperBound() );
 
   SurfelAdjacency<Z3i::KSpace::dimension>  sAdjInt( true );
   SurfelAdjacency<Z3i::KSpace::dimension>  sAdjExt( false );

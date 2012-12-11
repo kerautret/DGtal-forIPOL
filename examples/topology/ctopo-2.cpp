@@ -109,7 +109,7 @@ int main( int /*argc*/, char** /*argv*/ )
   std::set<Z2i::SCell> bdry;
   // Z2i::Cell low = ks.uFirst(ks.uSpel(ks.lowerBound()));
   // Z2i::Cell upp = ks.uLast(ks.uSpel(ks.upperBound()));
-  Surfaces<Z2i::KSpace>::sMakeBoundary
+  Surfaces<Z2i::KSpace>::detectBoundarySurfels
     ( bdry,
       ks, set2dPredicate, ks.lowerBound(), ks.upperBound() );
 
